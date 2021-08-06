@@ -14,6 +14,14 @@ const VaccineController = {
   async read() {
     try {
       
+      return [
+        {
+          id: "teste",
+          name: "teste",
+          quantDosage: 0,
+          dosage: 0
+        }
+      ]
 
     } catch (error) {
       alert("Could not list.\n" + error);

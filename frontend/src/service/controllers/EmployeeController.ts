@@ -13,7 +13,16 @@ const EmployeeController = {
 
   async read() {
     try {
-      
+
+      return [
+        {
+          id: "teste",
+          name: "teste",
+          cpf: "teste",
+          occupation: "teste",
+          sector: "teste"
+        }
+      ]
 
     } catch (error) {
       alert("Could not list.\n" + error);

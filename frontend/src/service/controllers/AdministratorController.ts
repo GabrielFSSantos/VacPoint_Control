@@ -14,7 +14,7 @@ const AdministratorController = {
   async logout() {
     try {
       
-
+      return true;
     } catch (error) {
       alert("Could not logout.\n" + error);
     }

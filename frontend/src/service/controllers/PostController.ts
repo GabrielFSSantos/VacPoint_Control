@@ -14,7 +14,17 @@ const RequestController = {
   async read() {
     try {
       
-
+      return [
+        {
+          id: "teste",
+          title: "teste",
+          subtitle: "teste",
+          date: "teste",
+          Image: "teste",
+          link: "teste"
+        }
+      ]
+      
     } catch (error) {
       alert("Could not list.\n" + error);
     }
