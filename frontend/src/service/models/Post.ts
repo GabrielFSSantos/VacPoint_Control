@@ -1,8 +1,8 @@
 export type Post = {
-  id: string;
+  id?: string;
   title: string;
   subtitle: string;
   date: string;
-  Image: string;
+  image: string;
   link: string;
 }

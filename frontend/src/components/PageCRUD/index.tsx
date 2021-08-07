@@ -11,6 +11,7 @@ type PageCRUDProps = {
   handleToNew: () => {};
   handleToEdit: () => {};
   handleToRemove: () => {};
+  handleToVaccine?: () => {};
   setRowsSelected: React.Dispatch<React.SetStateAction<Row[]>>
 }
 
@@ -20,7 +21,7 @@ type SelectedRows = {
   selectedRows: RowRecord[];
 }
 
-export function PageCRUD({title, handleToNew, handleToEdit, handleToRemove, setRowsSelected}: PageCRUDProps) {
+export function PageCRUD({title, handleToNew, handleToEdit, handleToRemove, setRowsSelected, handleToVaccine}: PageCRUDProps) {
 
   const [searchQuery, setSearchQuery] = useState('');
   const { columns, rows } = useTable({type: title, search: searchQuery});
@@ -67,6 +68,11 @@ export function PageCRUD({title, handleToNew, handleToEdit, handleToRemove, setR
             <Button onClick={handleToRemove} isOutlined >
               ✕<b>Excluir {title === 'employees' ? 'Funcionário' : (title === 'vaccines' ? 'Vacina' : 'Postagem')}</b>
             </Button>
+            {handleToVaccine ? (
+              <Button onClick={handleToVaccine} isOutlined >
+                ✓<b>Vacinas</b>
+              </Button>
+            ) : false}
           </div>
           <input 
             type="text" 

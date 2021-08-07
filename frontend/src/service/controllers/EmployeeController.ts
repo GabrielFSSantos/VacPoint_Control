@@ -19,8 +19,17 @@ const EmployeeController = {
           id: "teste",
           name: "teste",
           cpf: "teste",
+          email: "teste",
+          phone: "teste",
           occupation: "teste",
-          sector: "teste"
+          sector: "teste",
+          cep: "teste",
+          city: "teste",
+          state: "teste",
+          street: "teste",
+          number: 0,
+          district: "teste",
+          complement: "teste"
         }
       ]
 
@@ -50,6 +59,22 @@ const EmployeeController = {
   async show(code: string, search: string) {
     try {
       
+      return {
+        id: "teste",
+        name: "teste",
+        cpf: "teste",
+        email: "teste",
+        phone: "teste",
+        occupation: "teste",
+        sector: "teste",
+        cep: "teste",
+        city: "teste",
+        state: "teste",
+        street: "teste",
+        number: 0,
+        district: "teste",
+        complement: "teste"
+      }
 
     } catch (error) {
       alert("Could not show.\n" + error);

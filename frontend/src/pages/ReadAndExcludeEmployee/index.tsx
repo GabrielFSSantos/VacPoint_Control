@@ -17,6 +17,7 @@ export function ReadAndExcludeEmployee() {
   const [selectMoreEmployee, setSelectMoreEmployee] = useState(false);
   const [confirmExcludedEmployee, setConfirmExcludedEmployee] = useState(false);
   const [excludedEmployee, setExcludedEmployee] = useState(false);
+  const [vaccinesEmployee, setVaccinesEmployee] = useState(false);
 
   async function handleToNewEmployee() {
     history.push('/new/employee');
@@ -42,6 +43,18 @@ export function ReadAndExcludeEmployee() {
     setConfirmExcludedEmployee(true);
   }
 
+  async function handleToVaccine() {
+    if(rowsSelected.length > 1){
+      setJustOneEmployee(true);
+      return
+    }
+    if(rowsSelected.length < 1){
+      setSelectOneEmployee(true);
+      return
+    }
+    history.push(`/vaccine/employee/${rowsSelected[0].id}`);
+  }
+
   return(
     <div>
       <Header title="Funcionários"/>
@@ -52,6 +65,7 @@ export function ReadAndExcludeEmployee() {
         handleToEdit={handleToEditEmployee}
         handleToRemove={handleToRemoveEmployee}
         setRowsSelected={setRowsSelected}
+        handleToVaccine={handleToVaccine}
       />
 
       {justOneEmployee ? 
@@ -60,7 +74,7 @@ export function ReadAndExcludeEmployee() {
           title="Alerta ao editar funcionário" 
           handleToCancel={() => {setJustOneEmployee(false)}}
         >
-          Não é possível editar mais de um funcionário por vez.
+          Não é possível editar ou ver vacinas de mais de um funcionário por vez.
         </Modal> 
       : false}
 
@@ -70,7 +84,7 @@ export function ReadAndExcludeEmployee() {
           title="Alerta ao editar funcionário" 
           handleToCancel={() => {setSelectOneEmployee(false)}}
         >
-          Selecione um funcionário para editar.
+          Selecione um funcionário para editar ou ver suas vacinas.
         </Modal> 
       : false}
 

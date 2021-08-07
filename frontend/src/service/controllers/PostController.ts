@@ -1,13 +1,13 @@
 import { Post } from '../models/Post';
 
-const RequestController = {
+const PostController = {
   
-  async create(request: Request) {
+  async create(post: Post) {
     try {
       
 
     }catch (error) {
-      alert("error Request Exists");
+      alert("error Post Exists");
    }
   },
 
@@ -20,7 +20,7 @@ const RequestController = {
           title: "teste",
           subtitle: "teste",
           date: "teste",
-          Image: "teste",
+          image: "teste",
           link: "teste"
         }
       ]
@@ -30,7 +30,7 @@ const RequestController = {
     }
   },
   
-  async update(request: Request) {
+  async update(post: Post) {
     try {
       
       
@@ -46,7 +46,24 @@ const RequestController = {
     } catch (error) {
       alert("don't was not possible to delete.\n" + error);
     }
+  },
+
+  async show(code: string, search: string) {
+    try {
+      
+      return {
+        id: "teste",
+        title: "teste",
+        subtitle: "teste",
+        date: "teste",
+        image: "teste",
+        link: "teste"
+      }
+
+    } catch (error) {
+      alert("Could not show.\n" + error);
+    }
   }
 }
 
-export default RequestController;
+export default PostController;
