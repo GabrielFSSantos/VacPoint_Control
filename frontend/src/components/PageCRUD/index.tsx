@@ -59,18 +59,18 @@ export function PageCRUD({title, handleToNew, handleToEdit, handleToRemove, setR
         <div className="section">
           <div>
             <Button onClick={handleToNew} isOutlined >
-              ✛<b>Novo {title === 'employees' ? 'Funcionário' : title === 'vaccines' ? 'Vacina' : 'Postagem'}</b>
+              ✛<b>{title === 'employees' ? 'Novo Funcionário' : (title === 'vaccines' ? 'Nova Vacina' : 'Nova Postagem')}</b>
             </Button>
             <Button onClick={handleToEdit} isOutlined >
-              ✎<b>Editar {title === 'employees' ? 'Funcionário' : title === 'vaccines' ? 'Vacina' : 'Postagem'}</b>
+              ✎<b>Editar {title === 'employees' ? 'Funcionário' : (title === 'vaccines' ? 'Vacina' : 'Postagem')}</b>
             </Button>
             <Button onClick={handleToRemove} isOutlined >
-              ✕<b>Excluir {title === 'employees' ? 'Funcionário' : title === 'vaccines' ? 'Vacina' : 'Postagem'}</b>
+              ✕<b>Excluir {title === 'employees' ? 'Funcionário' : (title === 'vaccines' ? 'Vacina' : 'Postagem')}</b>
             </Button>
           </div>
           <input 
             type="text" 
-            placeholder={`Pesquise um ${title === 'employees' ? 'funcionário' : title === 'vaccines' ? 'Vacina' : 'Postagem'} pelo nome...`} 
+            placeholder={`Pesquise ${title === 'employees' ? 'um funcionário' : (title === 'vaccines' ? 'uma Vacina' : 'uma Postagem')} pelo nome...`} 
             onChange={event => setSearchQuery(event.target.value)} value={searchQuery}
           />
         </div>
