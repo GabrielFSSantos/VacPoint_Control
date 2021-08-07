@@ -1,3 +1,5 @@
+@import '../../styles/global.scss';
+
 #CRUD-Page {
   main {
     display: flex;
@@ -17,13 +19,17 @@
       }
 
       input {
-        border: 0.1rem solid #FFA200;
+        border: 0.1rem solid $primary;
         border-radius: 1.5rem;
         background: #FFF;
         outline: none;
 
         padding: 0.5rem 1rem;
         width: 25rem;
+
+        &:focus {
+          border: 0.2rem solid $primary;
+        }
       }
     }
 

@@ -1,3 +1,5 @@
+@import '../../styles/global.scss';
+
 #LabelAndChange {
   div {
     display: flex;
@@ -16,11 +18,11 @@
       outline: none;
       
       background: #FFF;
-      border: 0.1rem solid #0008;
+      border: 0.1rem solid $dark;
       border-radius: 0.5rem;
 
       &:focus {
-        border: 0.2rem solid #047F9F;
+        border: 0.2rem solid $primary;
         border-radius: 0.5rem;
       }
     }

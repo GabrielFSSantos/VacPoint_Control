@@ -5,6 +5,7 @@ const AdministratorController = {
   async login(admin: Administrator) {
     try {
       
+      return true;
 
     } catch (error) {
       alert("Could not login.\n" + error);

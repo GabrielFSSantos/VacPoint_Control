@@ -1,16 +1,18 @@
+@import '../../styles/global.scss';
+
 .button {
   color: #FFF;
   font-size: 1.5rem;
 
   border: none;
-  background: #FFA200;
+  background: $dark;
   padding: 0.5rem 1.5rem;
   border-radius: 2rem;
 
   transition: 300ms;
 
   &:hover {
-    background: #047F9F;
+    background: $primary;
     color: #FFF;
   }
 
@@ -19,26 +21,30 @@
     align-items: center;
     justify-content: center;
 
-    color: #FFA200;
+    color: $primary;
     font-size: 1.5rem;
 
-    border: 0.1rem solid #FFA200;
+    border: 0.1rem solid $primary;
     border-radius: 1rem;
     background: #FFF;
     padding: 0.4rem 1rem;
 
     transition: 300ms;
 
-    &:hover {
-      background: #FFA200;
-      color: #FFF;
-    }
-
     b {
-      color: #000;
+      color: $text;
       font-size: 1rem;
       margin-left: 0.5rem;
       margin-top: 0.2rem;
+    }
+
+    &:hover {
+      background: $primary;
+      color: #FFF;
+      
+      b {
+        color: #FFF;
+      }
     }
   }
 }

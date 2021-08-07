@@ -1,0 +1,23 @@
+@import '../../styles/global.scss';
+
+#login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  h1 {
+    font-size: 8rem;
+    color: $dark;
+  }
+
+  h2 {
+    font-size: 4rem;
+    color: $text;
+  }
+
+  b {
+    color: red;
+  }
+}
+

@@ -1,0 +1,105 @@
+@import '../../styles/global.scss';
+
+#login {
+  height: 100vh;
+  display: flex;
+  align-items: stretch;
+
+  aside {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    flex: 1;
+    background: url(../../assets/loginBackground.jpg) no-repeat center;
+    background-size: cover;
+
+    strong {
+      font-size: 3rem;
+      color: $dark;
+      font-weight: bold;
+      margin-left: 8rem;
+    }
+  
+    p {
+      font-size: 1.5rem;
+      color: $text;
+      font-weight: bold;
+
+      margin-left: 10rem;
+      margin-top: 1rem;
+      margin-bottom: 25rem;
+    }
+  }
+
+  main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  
+    width: 100%;
+    max-width: 45rem;
+
+    .main-content  {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      img {
+        max-width: 16rem;
+      }
+  
+      form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+  
+        button {
+          margin-top: 2rem;
+          background: $primary;
+  
+          &:hover {
+            background: $dark;
+            color: #FFF;
+          }
+        }
+  
+        input {
+          padding: 0.8rem 1rem;
+        }
+      }
+  
+      .separator {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+  
+        font-size: 1rem;
+        color: $primary;
+    
+        margin-top: 1rem;
+        align-items: center;
+    
+        &::after {
+          content: '';
+          height: 0.1rem;
+          width: 5rem;
+          background: $primary;
+          margin-left: 1rem;
+        }
+    
+        &::before {
+          content: '';
+          height: 0.1rem;
+          width: 5rem;
+          background: $primary;
+          margin-right: 1rem;
+        }
+      }
+    }
+  }
+}
+
