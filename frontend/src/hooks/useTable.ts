@@ -55,7 +55,7 @@ export function useTable({type, search}: TableProps) {
       setColumns([
         { selector: row => 'name', name: 'Nome', sortable: true, format: row => {return row.name.toString()}},
         { selector: row => 'quantDosage', name: 'Quantidade de dosagem', sortable: true, format: row => {return row.quantDosage.toString()}},
-        { selector: row => 'dosage', name: 'Dosagem', sortable: true, format: row => {return row.dosage.toString()}}
+        //{ selector: row => 'dosage', name: 'Dosagem', sortable: true, format: row => {return row.dosage.toString()}}
       ]);
       
       VaccineController.read().then((vaccines) => { if(vaccines){

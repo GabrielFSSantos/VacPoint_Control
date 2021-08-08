@@ -1,5 +1,6 @@
 export type Dosage = {
-  employeeId?: string;
+  id?: string;
+  dosageNumber?: number;
   date?: string;
   took?: boolean;
 }

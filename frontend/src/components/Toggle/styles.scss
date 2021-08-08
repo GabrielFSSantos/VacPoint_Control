@@ -1,3 +1,5 @@
+@import '../../styles/global.scss';
+
 #toggle {
   /* The switch - the box around the slider */
   .switch {
@@ -39,11 +41,11 @@
     }
 
     input:checked + .slider {
-      background-color: #047F9F;
+      background-color: $primary;
     }
 
     input:focus + .slider {
-      box-shadow: 0 0 0.1rem #2196F3;
+      box-shadow: 0 0 0.1rem $primary;
     }
 
     input:checked + .slider:before {

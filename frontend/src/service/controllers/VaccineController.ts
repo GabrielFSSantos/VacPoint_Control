@@ -18,8 +18,8 @@ const VaccineController = {
         {
           id: "teste",
           name: "teste",
-          quantDosage: 0,
-          dosage: 0
+          description: "teste",
+          quantDosage: 1,
         }
       ]
 
@@ -43,6 +43,75 @@ const VaccineController = {
 
     } catch (error) {
       alert("don't was not possible to delete.\n" + error);
+    }
+  },
+
+  async show(code: string, search: string) {
+    try {
+
+      return {
+        id: "teste",
+        name: "teste",
+        description: "teste",
+        quantDosage: 1,
+      }
+
+    } catch (error) {
+      alert("Could not show.\n" + error);
+    }
+  },
+
+  async readToEmployee(id: string) {
+    try {
+
+      return {
+        name: "teste",
+        vaccines: [
+          {
+            id: "vaccine1",
+            name: "vaccine1",
+            description: "vaccine1",
+            quantDosage: 2,
+            dosages: [
+              {
+                id: "teste",
+                dosageNumber: 1,
+                date: "12/12/12",
+                took: false,
+              },
+              {
+                id: "teste",
+                dosageNumber: 2,
+                date: "12/12/12",
+                took: false,
+              }
+            ],
+          },
+          {
+            id: "vaccine2",
+            name: "vaccine2",
+            description: "vaccine2",
+            quantDosage: 2,
+            dosages: [
+              {
+                id: "teste",
+                dosageNumber: 1,
+                date: "12/12/12",
+                took: false,
+              },
+              {
+                id: "teste",
+                dosageNumber: 2,
+                date: "12/12/12",
+                took: false,
+              }
+            ],
+          },
+        ]
+      }
+
+    } catch (error) {
+      alert("Could not show.\n" + error);
     }
   }
 }

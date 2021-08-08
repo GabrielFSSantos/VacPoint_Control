@@ -1,13 +1,16 @@
 import { ReactNode } from 'react';
+import { TextareaHTMLAttributes } from 'react';
 import { InputHTMLAttributes, SelectHTMLAttributes } from 'react';
 import './styles.scss';
 
 type LabelInputProps = 
   InputHTMLAttributes<HTMLInputElement> &
+  TextareaHTMLAttributes<HTMLTextAreaElement> &
   SelectHTMLAttributes<HTMLSelectElement> &
 {
   name: string;
   input?: boolean;
+  textarea?: boolean;
   select?: boolean;
   span?: boolean;
   children?: ReactNode;
@@ -15,7 +18,8 @@ type LabelInputProps =
 
 export function LabelAndChange({
   name, 
-  input = false, 
+  input = false,
+  textarea = false,
   select = false, 
   span = false,
   children,
@@ -28,6 +32,12 @@ export function LabelAndChange({
         <div>
           <label>{name}</label>
           <input {...props} />
+        </div>
+      ) : false}
+      {textarea ? (
+        <div>
+          <label>{name}</label>
+          <textarea {...props} />
         </div>
       ) : false}
       {select ? (
