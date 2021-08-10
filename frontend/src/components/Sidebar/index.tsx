@@ -29,7 +29,7 @@ export function Sidebar({children}: SidebarProps) {
   }
 
   return(
-    <div id="home" >
+    <div id="sidebar" >
       <aside>
         <img src={logo} alt="Logo" onClick={handleToHome}/>
         <div className="list">
