@@ -16,7 +16,6 @@ const Employee = new mongoose.Schema({
   number: Number,
   district: String,
   complement: String,
-  vaccines: [Vaccine],
 });
 
 export default mongoose.model('Employee', Employee);

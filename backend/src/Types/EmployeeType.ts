@@ -1,5 +1,3 @@
-import { VaccineType } from "./VaccineType";
-
 export type EmployeeType = {
   id?: string;
   name?: string;
@@ -15,5 +13,4 @@ export type EmployeeType = {
   number?: number;
   district?: string;
   complement?: string;
-  vaccines?: VaccineType[];
 }

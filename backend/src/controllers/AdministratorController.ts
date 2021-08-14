@@ -29,7 +29,7 @@ const AdministratorController = {
 
       const { secret, expiresIn } = authConfig.jwt;
 
-      const token = sign({}, secret, { subject: administrator.id, expiresIn });
+      const token = sign({}, secret, { subject: administrator.email, expiresIn });
       
       const response = {
         id: administrator._id,

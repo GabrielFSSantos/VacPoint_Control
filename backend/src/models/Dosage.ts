@@ -1,6 +1,6 @@
 import mongoose from "mongoose"
 
-const Dosage = new mongoose.Schema({
+export const Dosage = new mongoose.Schema({
   id: String,
   dosageNumber: Number,
   date: String,

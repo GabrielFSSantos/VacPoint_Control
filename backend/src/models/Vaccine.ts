@@ -6,7 +6,6 @@ const Vaccine = new mongoose.Schema({
   name: String,
   description: String,
   quantDosage: Number,
-  dosages: [Dosage],
 });
 
 export default mongoose.model('Vaccine', Vaccine);
