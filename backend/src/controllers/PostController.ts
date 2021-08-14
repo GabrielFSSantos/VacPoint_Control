@@ -49,7 +49,7 @@ const PostController = {
     }
   },
 
-  async show(code: string, search: string) {
+  async show(code: string) {
     try {
       
       return {

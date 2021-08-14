@@ -37,12 +37,15 @@ const AdministratorController = {
         await axios({
           method: 'post',
           url: 'http://localhost:3333/administrators/logout',
+          headers: {
+            authorization: `Bearer ${tokenStorage}`
+          }, 
         });
         return true;
       }
       return false;
     } catch (error) {
-      alert("Could not logout.\n" + error);
+      console.log("Could not logout.\n" + error);
     }
   }
 }
