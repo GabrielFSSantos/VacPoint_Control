@@ -15,7 +15,7 @@ function App() {
   return (
     <BrowserRouter>
       <Switch>
-        {/*localStorage.getItem('token')*/ true ? (
+        {localStorage.getItem('token') ? (
             <Sidebar>
               <Route path="/home" component={Home}/>
 
@@ -32,7 +32,7 @@ function App() {
               <Route path="/new/post" component={RegisterAndEditPost}/>
               <Route path="/edit/post/:id" component={RegisterAndEditPost}/>
             </Sidebar>
-          ): <Route path="/" exact component={Login}/>}
+        ): <Route path="/" exact component={Login}/>}
       </Switch>
     </BrowserRouter>
   );

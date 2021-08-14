@@ -26,8 +26,7 @@ export function Login() {
       
       const admin: Administrator = {
         email,
-        password,
-        token: ''
+        password
       }
       AdministratorController.login(admin).then(result => {
         if(result){
