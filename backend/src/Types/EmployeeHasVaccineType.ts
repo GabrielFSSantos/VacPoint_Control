@@ -1,7 +1,7 @@
 import { DosageType } from "./DosageType";
 
 export type EmployeeHasVaccineType = {
-  id?: String,
+  _id?: String,
   employeeId?: String,
   vaccineId?: String,
   dosages?: DosageType[],

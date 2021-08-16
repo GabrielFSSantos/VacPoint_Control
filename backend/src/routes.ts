@@ -18,13 +18,14 @@ privateRouter.get('/employees/read', EmployeeController.read);
 privateRouter.put('/employees/update', EmployeeController.update);
 privateRouter.delete('/employees/delete', EmployeeController.delete);
 privateRouter.get('/employees/show', EmployeeController.show);
+privateRouter.get('/employees/readToVaccines', EmployeeController.readToVaccines);
+privateRouter.put('/employees/updateToVaccines', EmployeeController.updateToVaccines);
 
 privateRouter.post('/vaccines/create', VaccineController.create);
 privateRouter.get('/vaccines/read', VaccineController.read);
 privateRouter.put('/vaccines/update', VaccineController.update);
 privateRouter.delete('/vaccines/delete', VaccineController.delete);
 privateRouter.get('/vaccines/show', VaccineController.show);
-privateRouter.get('/vaccines/readToEmployee', VaccineController.readToEmployee);
 
 privateRouter.post('/posts/create', PostController.create);
 publicRouter.get('/posts/read', PostController.read);

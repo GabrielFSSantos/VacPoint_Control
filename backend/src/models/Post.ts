@@ -1,7 +1,6 @@
 import mongoose from "mongoose"
 
 const Post = new mongoose.Schema({
-  id: String,
   title: String,
   subtitle: String,
   date: String,

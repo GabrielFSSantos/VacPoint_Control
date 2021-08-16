@@ -6,6 +6,9 @@ export const connect = async (): Promise<Mongoose> =>
     useCreateIndex: true,
     useNewUrlParser: true,
     useUnifiedTopology: true,
+    
+    keepAlive: true,
+    useFindAndModify: false,
   });
 
 export const close = (): Promise<void> => mongoose.connection.close();

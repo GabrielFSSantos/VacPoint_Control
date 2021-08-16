@@ -2,7 +2,6 @@ import mongoose from "mongoose";
 import Vaccine from "./Vaccine";
 
 const Employee = new mongoose.Schema({
-  id: String,
   name: String,
   cpf: String,
   email: String,

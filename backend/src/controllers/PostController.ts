@@ -32,8 +32,17 @@ const PostController = {
   async update(req: Request, res: Response) {
     try {
 
-      const post = await Post.findById(req.body.id);
-      const response = await Post.updateOne({id: post.id}, req.body);
+      const post = await Post.findById(req.body._id);
+
+      if (!post) {
+        return res.status(401).json({ error: 'Post not found.' });
+      }
+
+      if(req.body._id) {
+        delete req.body._id;
+      }
+
+      const response = await Post.findByIdAndUpdate({_id: post._id}, req.body);
 
       return res.status(200).json(response);
       
@@ -44,11 +53,12 @@ const PostController = {
   
   async delete(req: Request, res: Response) {
     try {
-      
-      const post = await Post.findById(req.body.id);
-      const response = await Post.deleteOne({id: post.id});
 
-      return res.status(200).json(response);
+      req.body.forEach(async (post: PostType) => {
+        await Post.findByIdAndDelete(post._id);
+      });
+      
+      return res.send("Excluded");
 
     } catch (error) {
       alert("don't was not possible to delete.\n" + error);
@@ -58,7 +68,11 @@ const PostController = {
   async show(req: Request, res: Response) {
     try {
 
-      const post = await Post.findById(req.body.id);
+      const post = await Post.findById(req.body._id);
+
+      if (!post) {
+        return res.status(401).json({ error: 'Post not found.' });
+      }
 
       return res.status(200).json(post);
 

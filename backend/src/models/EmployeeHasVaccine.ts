@@ -1,8 +1,12 @@
 import mongoose from "mongoose"
-import { Dosage } from "./Dosage";
+
+const Dosage = new mongoose.Schema({
+  dosageNumber: Number,
+  date: String,
+  took: Boolean
+});
 
 const EmployeeHasVaccine = new mongoose.Schema({
-  id: String,
   employeeId: String,
   vaccineId: String,
   dosages: [Dosage],

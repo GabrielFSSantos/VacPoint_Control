@@ -40,6 +40,6 @@ export default function ensureAuthenticated(request: Request, response: Response
     return next();
     
   } catch {
-    return response.status(400).json({ error: 'oken ivalid.' });
+    return response.status(400).json({ error: 'token invalid.' });
   }
 }

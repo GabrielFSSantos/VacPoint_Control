@@ -3,7 +3,6 @@ import { Request, Response } from 'express';
 import Employee from '../models/Employee';
 import Vaccine from '../models/Vaccine';
 import EmployeeHasVaccine from '../models/EmployeeHasVaccine';
-import Dosage from '../models/Dosage';
 
 import { DosageType } from '../Types/DosageType';
 import { EmployeeType } from '../Types/EmployeeType';
@@ -24,26 +23,30 @@ const EmployeeController = {
       const employee = await Employee.create(req.body);
 
       const vaccines = await Vaccine.find({});
-      vaccines.array.forEach(async (vaccine: VaccineType ) => {
+
+      if(vaccines.length > 0) {
+        vaccines.array.forEach(async (vaccine: VaccineType ) => {
         
-        let dosages: DosageType[] = [];
-        if(vaccine.quantDosage){
-          for(let i=0; i<vaccine.quantDosage; i++){
-            dosages.concat(await Dosage.create({
-              dosageNumber: i,
-              date: Date.now().toLocaleString(),
-              took: false,
-            }));
+          let dosages: DosageType[] = [];
+          if(vaccine.quantDosage){
+            for(let i=0; i<vaccine.quantDosage; i++){
+              const dosage: DosageType = {
+                dosageNumber: i+1,
+                date: new Date(Date.now()).toLocaleDateString(),
+                took: false,
+              };
+              dosages.push(dosage);
+            }
           }
-        }
-
-        await EmployeeHasVaccine.create({
-          employeeId: employee.id,
-          vaccineId: vaccine.id,
-          dosages,
+  
+          await EmployeeHasVaccine.create({
+            employeeId: employee._id,
+            vaccineId: vaccine._id,
+            dosages,
+          });
+  
         });
-
-      });
+      }
 
       return res.json(employee);
       
@@ -77,7 +80,11 @@ const EmployeeController = {
         return res.status(401).json({ error: 'Administrador not Exists' });
       }
 
-      const response = await Employee.updateOne({id: employee.id}, req.body);
+      if(req.body._id) {
+        delete req.body._id;
+      }
+
+      const response = await Employee.findByIdAndUpdate({_id: employee._id}, req.body);
 
       return res.json(response); 
       
@@ -88,9 +95,10 @@ const EmployeeController = {
   
   async delete(req: Request, res: Response) {
     try {
-      
-      req.body.array.forEach(async (employee: EmployeeType) => {
-        await Employee.deleteOne({id: employee.id});
+
+      req.body.forEach(async (employee: VaccineType) => {
+        await EmployeeHasVaccine.deleteMany({employeeId: employee._id});
+        await Employee.findByIdAndDelete(employee._id);
       });
 
       return res.send("Excluded"); 
@@ -113,7 +121,7 @@ const EmployeeController = {
           break;
       }
 
-      if(!employee.id){
+      if(!employee){
         return res.status(400).send("error Employee Exists");
       }
 
@@ -121,6 +129,75 @@ const EmployeeController = {
 
     } catch (error) {
       return res.status(400).json("Could not show.\n" + error);
+    }
+  },
+
+  async readToVaccines(req: Request, res: Response) {
+    try {
+      
+      const employee = await Employee.findById(req.body._id);
+
+      if(!employee) {
+        return res.status(400).send("error Employee Exists");
+      }
+
+      const employeesHasVaccines = await EmployeeHasVaccine.find({employeeId: employee._id});
+
+      const vaccines: VaccineType[] = [];
+      for(let i=0; i<employeesHasVaccines.length; i++) {
+        const vaccine: VaccineType = await Vaccine.findById(employeesHasVaccines[i].vaccineId);
+        const dosages = employeesHasVaccines[i].dosages;
+        const response = { vaccine, dosages };
+        vaccines.push(response);
+      }
+
+      // await employeesHasVaccines.forEach(async (element: EmployeeHasVaccineType) => {
+      //   const vaccine: VaccineType = await Vaccine.findById(element.vaccineId);
+      //   vaccine.dosages = element.dosages;
+      //   vaccines.push(vaccine);
+      // });
+
+      const response = { employee, vaccines };
+
+      return res.json(response); 
+
+    } catch (error) {
+      alert("Could not show.\n" + error);
+    }
+  },
+
+  async updateToVaccines(req: Request, res: Response) {
+    try {
+      
+      const employee = await Employee.findById(req.body.employee._id);
+
+      if(!employee) {
+        return res.status(400).send("error Employee Exists");
+      }
+
+      const vaccines: VaccineType[] = [];
+      for(let i=0; i<req.body.vaccines.length; i++) {
+        const vaccine = req.body.vaccines[i].vaccine;
+        const dosages = req.body.vaccines[i].dosages;
+        await EmployeeHasVaccine.updateOne({employeeId: employee._id, vaccineId: vaccine._id}, {dosages});
+        const response = { vaccine, dosages };
+        vaccines.push(response);
+      }
+
+      // await req.body.vaccines.forEach(async (element: {vaccine: VaccineType, dosages: DosageType[]}) => {
+      //   const vaccine = element.vaccine;
+      //   const dosages = element.dosages;
+      //   await EmployeeHasVaccine.updateOne({employeeId: employee._id, vaccineId: element.vaccine._id}, {dosages});
+      //   const response = { vaccine, dosages };
+      //   vaccines.push(response);
+      // });
+
+      const response = { employee, vaccines };
+
+      return res.json(response); 
+
+    } catch (error) {
+      alert("Could not show.\n" + error);
     }
   }
 }
