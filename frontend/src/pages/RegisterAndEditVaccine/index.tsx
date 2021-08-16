@@ -8,7 +8,6 @@ import { Modal } from '../../components/Modal';
 
 import { Vaccine } from '../../service/models/Vaccine';
 import VaccineController from '../../service/controllers/VaccineController';
-import cam from '../../assets/cam.png';
 
 import './styles.scss'
 
@@ -30,11 +29,11 @@ export function RegisterAndEditVaccine() {
 
   useEffect(() => {
     if(params.id){
-      VaccineController.show(params.id, 'vaccineId').then((dados) => {
+      VaccineController.show(params.id).then((dados) => {
         if (dados) {
-          setName(dados.name);
-          setQuantDosage(dados.quantDosage);
-          setDescription(dados.description);
+          setName(dados.name || '');
+          setQuantDosage(dados.quantDosage || 0);
+          setDescription(dados.description || '');
         }
         else{
           history.push('/vaccines');
@@ -54,6 +53,7 @@ export function RegisterAndEditVaccine() {
       }
 
       if(params.id) {
+        vaccine._id = params.id;
         VaccineController.update(vaccine).then(() => {
           setAlertEdited(true);
         });

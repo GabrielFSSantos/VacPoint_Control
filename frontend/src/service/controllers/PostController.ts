@@ -52,7 +52,6 @@ const PostController = {
   
   async update(post: Post) {
     try {
-      console.log(post);
       const tokenStorage = localStorage.getItem('token');
       let res: Post = {}
 

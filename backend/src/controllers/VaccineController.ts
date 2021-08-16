@@ -64,9 +64,7 @@ const VaccineController = {
   async update(req: Request, res: Response) {
     try {
 
-      const vaccine = await Vaccine.findOne({
-        id: req.body.id
-      });
+      const vaccine = await Vaccine.findById(req.body._id);
 
       if (!vaccine) {
         return res.status(401).json({ error: 'Vaccine not Exists' });
@@ -126,8 +124,7 @@ const VaccineController = {
 
   async show(req: Request, res: Response) {
     try {
-
-      const vaccine = await Vaccine.findById(req.body._id);
+      const vaccine = await Vaccine.findById(req.params.id);
 
       if(!vaccine){
         return res.status(400).send("error Vaccine Exists");
