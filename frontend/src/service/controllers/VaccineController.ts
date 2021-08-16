@@ -16,7 +16,7 @@ const VaccineController = {
       
       return [
         {
-          id: "teste",
+          _id: "teste",
           name: "teste",
           description: "teste",
           quantDosage: 1,
@@ -37,7 +37,7 @@ const VaccineController = {
     }
   },
   
-  async delete(elements: {id: string}[]) {
+  async delete(elements: Vaccine[]) {
     try {
       
 
@@ -50,64 +50,10 @@ const VaccineController = {
     try {
 
       return {
-        id: "teste",
+        _id: "teste",
         name: "teste",
         description: "teste",
         quantDosage: 1,
-      }
-
-    } catch (error) {
-      alert("Could not show.\n" + error);
-    }
-  },
-
-  async readToEmployee(id: string) {
-    try {
-
-      return {
-        name: "teste",
-        vaccines: [
-          {
-            id: "vaccine1",
-            name: "vaccine1",
-            description: "vaccine1",
-            quantDosage: 2,
-            dosages: [
-              {
-                id: "teste",
-                dosageNumber: 1,
-                date: "12/12/12",
-                took: false,
-              },
-              {
-                id: "teste",
-                dosageNumber: 2,
-                date: "12/12/12",
-                took: false,
-              }
-            ],
-          },
-          {
-            id: "vaccine2",
-            name: "vaccine2",
-            description: "vaccine2",
-            quantDosage: 2,
-            dosages: [
-              {
-                id: "teste",
-                dosageNumber: 1,
-                date: "12/12/12",
-                took: false,
-              },
-              {
-                id: "teste",
-                dosageNumber: 2,
-                date: "12/12/12",
-                took: false,
-              }
-            ],
-          },
-        ]
       }
 
     } catch (error) {

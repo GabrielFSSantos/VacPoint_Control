@@ -45,14 +45,14 @@ export function Card({
               placeholderText='DD/MM/YYYY'
               dateFormat='dd/MM/yyyy'
               selected={dosageInfos?.date !== '' ? new Date(dosageInfos?.date || Date.now()) : undefined}
-              onChange={date => {if(handleToDate) handleToDate(dosageInfos?.id || '', date)}}
+              onChange={date => {if(handleToDate) handleToDate(dosageInfos?._id || '', date)}}
             />
           </div>
 
           <Toggle 
             title=""
             defaultChecked={dosageInfos?.took}
-            onChange={event => {if(handleToToggle) handleToToggle(dosageInfos?.id || '', event)}}
+            onChange={event => {if(handleToToggle) handleToToggle(dosageInfos?._id || '', event)}}
           />
         </div>
       ) : false}

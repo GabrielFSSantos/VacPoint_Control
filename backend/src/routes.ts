@@ -31,6 +31,6 @@ privateRouter.post('/posts/create', PostController.create);
 publicRouter.get('/posts/read', PostController.read);
 privateRouter.put('/posts/update', PostController.update);
 privateRouter.delete('/posts/delete', PostController.delete);
-privateRouter.get('/posts/show', PostController.show);
+privateRouter.get('/posts/show/:id', PostController.show);
 
 export default [publicRouter, privateRouter];

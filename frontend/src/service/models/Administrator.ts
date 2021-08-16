@@ -1,5 +1,5 @@
 export type Administrator = {
-  id?: string;
+  _id?: string;
   email?: string;
   password?: string;
   token?: string;

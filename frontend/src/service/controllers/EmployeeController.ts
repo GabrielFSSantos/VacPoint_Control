@@ -20,7 +20,7 @@ const EmployeeController = {
         
       }).then(res => { response = res.data; });
 
-      if(!response.id){
+      if(!response._id){
         console.log("error Employee Exists.");
         return false;
       }
@@ -62,7 +62,7 @@ const EmployeeController = {
     }
   },
   
-  async delete(elements: {id: string}[]) {
+  async delete(elements: Employee[]) {
     try {
       
 
@@ -89,6 +89,114 @@ const EmployeeController = {
         number: 0,
         district: "teste",
         complement: "teste"
+      }
+
+    } catch (error) {
+      alert("Could not show.\n" + error);
+    }
+  },
+
+  async readToEmployee(id: string) {
+    try {
+
+      return {
+        name: "teste",
+        vaccines: [
+          {
+            _id: "vaccine1",
+            name: "vaccine1",
+            description: "vaccine1",
+            quantDosage: 2,
+            dosages: [
+              {
+                _id: "teste",
+                dosageNumber: 1,
+                date: "12/12/12",
+                took: false,
+              },
+              {
+                _id: "teste",
+                dosageNumber: 2,
+                date: "12/12/12",
+                took: false,
+              }
+            ],
+          },
+          {
+            _id: "vaccine2",
+            name: "vaccine2",
+            description: "vaccine2",
+            quantDosage: 2,
+            dosages: [
+              {
+                _id: "teste",
+                dosageNumber: 1,
+                date: "12/12/12",
+                took: false,
+              },
+              {
+                _id: "teste",
+                dosageNumber: 2,
+                date: "12/12/12",
+                took: false,
+              }
+            ],
+          },
+        ]
+      }
+
+    } catch (error) {
+      alert("Could not show.\n" + error);
+    }
+  },
+
+  async updateToVaccines(id: string) {
+    try {
+
+      return {
+        name: "teste",
+        vaccines: [
+          {
+            _id: "vaccine1",
+            name: "vaccine1",
+            description: "vaccine1",
+            quantDosage: 2,
+            dosages: [
+              {
+                _id: "teste",
+                dosageNumber: 1,
+                date: "12/12/12",
+                took: false,
+              },
+              {
+                _id: "teste",
+                dosageNumber: 2,
+                date: "12/12/12",
+                took: false,
+              }
+            ],
+          },
+          {
+            _id: "vaccine2",
+            name: "vaccine2",
+            description: "vaccine2",
+            quantDosage: 2,
+            dosages: [
+              {
+                _id: "teste",
+                dosageNumber: 1,
+                date: "12/12/12",
+                took: false,
+              },
+              {
+                _id: "teste",
+                dosageNumber: 2,
+                date: "12/12/12",
+                took: false,
+              }
+            ],
+          },
+        ]
       }
 
     } catch (error) {

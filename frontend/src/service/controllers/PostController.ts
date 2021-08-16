@@ -1,67 +1,126 @@
+import axios from 'axios';
+import { Row } from '../../hooks/useTable';
 import { Post } from '../models/Post';
 
 const PostController = {
   
   async create(post: Post) {
     try {
-      
+      const tokenStorage = localStorage.getItem('token');
+      let res: Post = {};
+
+      if(tokenStorage){
+        await axios({
+          method: 'POST',
+          url: 'http://localhost:3333/posts/create',
+          headers: {
+            authorization: `Bearer ${tokenStorage.replace(/"/g, '')}`
+          },
+          data: post
+        }).then(response => {
+          res = response.data
+        });
+        return res;
+      }
+      return res;
 
     }catch (error) {
-      alert("error Post Exists");
+      console.log("error Post Exists");
    }
   },
 
   async read() {
     try {
-      
-      return [
-        {
-          id: "teste",
-          title: "teste",
-          subtitle: "teste",
-          date: "teste",
-          image: "teste",
-          link: "teste"
-        }
-      ]
-      
+      const tokenStorage = localStorage.getItem('token');
+      let posts: Row[] = []
+
+      if(tokenStorage){
+        await axios({
+          method: 'GET',
+          url: 'http://localhost:3333/posts/read',
+        }).then(response => {
+          posts = response.data;
+        });
+        return posts;
+      }
+      return posts;
+
     } catch (error) {
-      alert("Could not list.\n" + error);
+      console.log("Could not list.\n" + error);
     }
   },
   
   async update(post: Post) {
     try {
-      
+      console.log(post);
+      const tokenStorage = localStorage.getItem('token');
+      let res: Post = {}
+
+      if(tokenStorage){
+        await axios({
+          method: 'PUT',
+          url: 'http://localhost:3333/posts/update',
+          headers: {
+            authorization: `Bearer ${tokenStorage.replace(/"/g, '')}`
+          },
+          data: post
+        }).then(response => {
+          res = response.data;
+        });
+        return res;
+      }
+      return res;
       
     } catch (error) {
-      alert("Could not update.\n" + error);
+      console.log("Could not update.\n" + error);
     }
   },
   
-  async delete(elements: {id: string}[]) {
+  async delete(elements: Post[]) {
     try {
-      
+      const tokenStorage = localStorage.getItem('token');
+
+      if(tokenStorage){
+        await axios({
+          method: 'DELETE',
+          url: 'http://localhost:3333/posts/delete',
+          headers: {
+            authorization: `Bearer ${tokenStorage.replace(/"/g, '')}`
+          },
+          data: elements
+        }).then(response => {
+          return true;
+        });
+      }
+      return false;
 
     } catch (error) {
-      alert("don't was not possible to delete.\n" + error);
+      console.log("don't was not possible to delete.\n" + error);
     }
   },
 
-  async show(code: string, search: string) {
+  async show(id: string) {
     try {
-      
-      return {
-        id: "teste",
-        title: "teste",
-        subtitle: "teste",
-        date: "teste",
-        image: "teste",
-        link: "teste"
+      const tokenStorage = localStorage.getItem('token');
+      let res: Post = {}
+
+      if(tokenStorage){
+        await axios({
+          method: 'GET',
+          url: `http://localhost:3333/posts/show/${id}`,
+          headers: {
+            'Content-Type': 'application/json',
+            authorization: `Bearer ${tokenStorage.replace(/"/g, '')}`
+          },
+        }).then(response => {
+          res = response.data;
+        });
+        return res;
       }
+      return res;
 
     } catch (error) {
-      alert("Could not show.\n" + error);
+      console.log("Could not show.\n" + error);
     }
   }
 }

@@ -31,7 +31,7 @@ export function ReadAndExcludePost() {
       setSelectOnePost(true);
       return
     }
-    history.push(`/edit/post/${rowsSelected[0].id}`);
+    history.push(`/edit/post/${rowsSelected[0]._id}`);
   }
 
   async function handleToRemovePost() {
@@ -104,7 +104,10 @@ export function ReadAndExcludePost() {
         <Modal 
           alert 
           title="Alerta ao excluir postagem" 
-          handleToCancel={() => {setExcludedPost(false)}}
+          handleToCancel={() => {
+            window.location.reload();
+            setExcludedPost(false)
+          }}
         >
           postagem(s) excluída(s) com sucesso!
         </Modal> 

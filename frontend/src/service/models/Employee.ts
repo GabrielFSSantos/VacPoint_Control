@@ -1,7 +1,7 @@
 import { Vaccine } from "./Vaccine";
 
 export type Employee = {
-  id?: string;
+  _id?: string;
   name?: string;
   cpf?: string;
   email?: string;

@@ -31,7 +31,7 @@ export function ReadAndExcludeVaccine() {
       setSelectOneVaccine(true);
       return
     }
-    history.push(`/edit/vaccine/${rowsSelected[0].id}`);
+    history.push(`/edit/vaccine/${rowsSelected[0]._id}`);
   }
 
   async function handleToRemoveVaccine() {
@@ -104,7 +104,10 @@ export function ReadAndExcludeVaccine() {
         <Modal 
           alert 
           title="Alerta ao excluir vacina" 
-          handleToCancel={() => {setExcludedVaccine(false)}}
+          handleToCancel={() => {
+            window.location.reload();
+            setExcludedVaccine(false)
+          }}
         >
           vacina(s) excluída(s) com sucesso!
         </Modal> 

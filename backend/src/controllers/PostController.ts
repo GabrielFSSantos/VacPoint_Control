@@ -67,8 +67,7 @@ const PostController = {
 
   async show(req: Request, res: Response) {
     try {
-
-      const post = await Post.findById(req.body._id);
+      const post = await Post.findById(req.params.id);
 
       if (!post) {
         return res.status(401).json({ error: 'Post not found.' });

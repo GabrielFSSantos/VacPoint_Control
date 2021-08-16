@@ -10,7 +10,7 @@ type TableProps = {
 }
 
 export type Row = { 
-  id: string;
+  _id: string;
   name?: string;
   cpf?: string;
   occupation?: string;

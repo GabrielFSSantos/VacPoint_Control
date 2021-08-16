@@ -1,7 +1,7 @@
 import { Dosage } from "./Dosage";
 
 export type Vaccine = {
-  id?: string;
+  _id?: string;
   name?: string;
   description?: string;
   quantDosage?: number;

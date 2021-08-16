@@ -32,13 +32,13 @@ export function RegisterAndEditPost() {
 
   useEffect(() => {
     if(params.id){
-      PostController.show(params.id, 'id').then((dados) => {
+      PostController.show(params.id).then((dados) => {
         if (dados) {
-          setTitle(dados.title);
-          setSubtitle(dados.subtitle);
-          setImage(dados.image);
-          setLink(dados.link);
-          setDate(dados.date);
+          setTitle(dados.title || '');
+          setSubtitle(dados.subtitle || '');
+          setImage(dados.image || '');
+          setLink(dados.link || '');
+          setDate(dados.date || '');
         }
         else{
           history.push('/posts');
@@ -60,6 +60,7 @@ export function RegisterAndEditPost() {
       }
 
       if(params.id) {
+        post._id = params.id;
         PostController.update(post).then(() => {
           setAlertEdited(true);
         });

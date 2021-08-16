@@ -9,6 +9,7 @@ import { Vaccine } from '../../service/models/Vaccine';
 import VaccineController from '../../service/controllers/VaccineController';
 
 import './styles.scss';
+import EmployeeController from '../../service/controllers/EmployeeController';
 
 
 type EmployeeParams = {
@@ -25,7 +26,7 @@ export function ViewVaccineToEmployee() {
 
   useEffect(() => {
     if(params.id){
-      VaccineController.readToEmployee(params.id).then((dados) => {
+      EmployeeController.readToEmployee(params.id).then((dados) => {
         if (dados) {
           setName(dados.name);
           setVaccines(dados.vaccines);

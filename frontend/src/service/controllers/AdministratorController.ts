@@ -8,7 +8,7 @@ const AdministratorController = {
       let response: Administrator =  {};
 
       await axios({
-        method: 'post',
+        method: 'POST',
         url: 'http://localhost:3333/administrators/login',
         headers: {}, 
         data: admin
@@ -38,7 +38,7 @@ const AdministratorController = {
           method: 'post',
           url: 'http://localhost:3333/administrators/logout',
           headers: {
-            authorization: `Bearer ${tokenStorage}`
+            authorization: `Bearer ${tokenStorage.replace(/"/g, '')}`
           }, 
         });
         return true;

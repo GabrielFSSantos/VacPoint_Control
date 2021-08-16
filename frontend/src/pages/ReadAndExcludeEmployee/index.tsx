@@ -32,7 +32,7 @@ export function ReadAndExcludeEmployee() {
       setSelectOneEmployee(true);
       return
     }
-    history.push(`/edit/employee/${rowsSelected[0].id}`);
+    history.push(`/edit/employee/${rowsSelected[0]._id}`);
   }
 
   async function handleToRemoveEmployee() {
@@ -52,7 +52,7 @@ export function ReadAndExcludeEmployee() {
       setSelectOneEmployee(true);
       return
     }
-    history.push(`/vaccine/employee/${rowsSelected[0].id}`);
+    history.push(`/vaccine/employee/${rowsSelected[0]._id}`);
   }
 
   return(
@@ -118,7 +118,10 @@ export function ReadAndExcludeEmployee() {
         <Modal 
           alert 
           title="Alerta ao excluir funcionário" 
-          handleToCancel={() => {setExcludedEmployee(false)}}
+          handleToCancel={() => {
+            window.location.reload();
+            setExcludedEmployee(false)
+          }}
         >
           funcionário(s) excluído(s) com sucesso!
         </Modal> 
