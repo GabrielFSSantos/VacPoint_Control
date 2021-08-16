@@ -17,7 +17,7 @@ privateRouter.post('/employees/create', EmployeeController.create);
 privateRouter.get('/employees/read', EmployeeController.read);
 privateRouter.put('/employees/update', EmployeeController.update);
 privateRouter.delete('/employees/delete', EmployeeController.delete);
-privateRouter.get('/employees/show', EmployeeController.show);
+privateRouter.get('/employees/show/:id', EmployeeController.show);
 privateRouter.get('/employees/readToVaccines', EmployeeController.readToVaccines);
 privateRouter.put('/employees/updateToVaccines', EmployeeController.updateToVaccines);
 

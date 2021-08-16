@@ -5,7 +5,6 @@ import Vaccine from '../models/Vaccine';
 import EmployeeHasVaccine from '../models/EmployeeHasVaccine';
 
 import { DosageType } from '../Types/DosageType';
-import { EmployeeType } from '../Types/EmployeeType';
 import { VaccineType } from '../Types/VaccineType';
 
 const EmployeeController = {
@@ -25,7 +24,7 @@ const EmployeeController = {
       const vaccines = await Vaccine.find({});
 
       if(vaccines.length > 0) {
-        vaccines.array.forEach(async (vaccine: VaccineType ) => {
+        vaccines.forEach(async (vaccine: VaccineType ) => {
         
           let dosages: DosageType[] = [];
           if(vaccine.quantDosage){
@@ -47,7 +46,6 @@ const EmployeeController = {
   
         });
       }
-
       return res.json(employee);
       
     }catch (error) {
@@ -72,9 +70,7 @@ const EmployeeController = {
   
   async update(req: Request, res: Response) {
     try {
-      const employee = await Employee.findOne({
-        cpf: req.body.cpf
-      });
+      const employee = await Employee.findById(req.body._id);
 
       if (!employee) {
         return res.status(401).json({ error: 'Administrador not Exists' });
@@ -110,16 +106,7 @@ const EmployeeController = {
 
   async show(req: Request, res: Response) {
     try {
-
-      let employee: EmployeeType = {};
-      switch (req.body.search) {
-        case 'id':
-          employee = await Employee.findById(req.body.code);
-          break;
-        case 'cpf':
-          employee = await Employee.findOne({cpf: req.body.code});
-          break;
-      }
+      const employee = await Employee.findById(req.params.id);
 
       if(!employee){
         return res.status(400).send("error Employee Exists");

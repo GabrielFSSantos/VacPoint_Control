@@ -39,21 +39,21 @@ export function RegisterAndEditEmployee() {
 
   useEffect(() => {
     if(params.id){
-      EmployeeController.show(params.id, 'id').then((dados) => {
+      EmployeeController.show(params.id).then((dados) => {
         if (dados) {
-          setName(dados.name);
-          setCpf(dados.cpf);
-          setEmail(dados.email);
-          setPhone(dados.phone);
-          setOccupation(dados.occupation);
-          setSector(dados.sector);
-          setCep(dados.cep);
-          setCity(dados.city);
-          setState(dados.state);
-          setStreet(dados.street);
-          setNumber(dados.number);
-          setDistrict(dados.district);
-          setComplement(dados.complement);
+          setName(dados.name || '');
+          setCpf(dados.cpf || '');
+          setEmail(dados.email || '');
+          setPhone(dados.phone || '');
+          setOccupation(dados.occupation || '');
+          setSector(dados.sector || '');
+          setCep(dados.cep || '');
+          setCity(dados.city || '');
+          setState(dados.state || '');
+          setStreet(dados.street || '');
+          setNumber(dados.number || 0);
+          setDistrict(dados.district || '');
+          setComplement(dados.complement || '');
         }
         else{
           history.push('/employees');
@@ -84,6 +84,7 @@ export function RegisterAndEditEmployee() {
       }
 
       if(params.id) {
+        employee._id = params.id;
         EmployeeController.update(employee).then(() => {
           setAlertEdited(true);
         });

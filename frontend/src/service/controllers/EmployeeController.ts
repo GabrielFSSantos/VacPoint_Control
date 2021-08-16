@@ -6,26 +6,23 @@ const EmployeeController = {
 
   async create(employee: Employee) {
     try {
-      
       const tokenStorage = localStorage.getItem('token');
-      let response: Employee =  {};
+      let res: Employee = {};
 
-      await axios({
-        method: 'post',
-        url: 'http://localhost:3333/employees/create',
-        headers: {
-          authorization: `Bearer ${tokenStorage}`
-        },  
-        data: employee
-        
-      }).then(res => { response = res.data; });
-
-      if(!response._id){
-        console.log("error Employee Exists.");
-        return false;
+      if(tokenStorage){
+        await axios({
+          method: 'POST',
+          url: 'http://localhost:3333/employees/create',
+          headers: {
+            authorization: `Bearer ${tokenStorage.replace(/"/g, '')}`
+          },
+          data: employee
+        }).then(response => {
+          res = response.data
+        });
+        return res;
       }
-
-      return true;
+      return res;
       
     }catch (error) {
       console.log("error Employee Exists");
@@ -34,65 +31,98 @@ const EmployeeController = {
 
   async read() {
     try {
-
       const tokenStorage = localStorage.getItem('token');
-      let response: Row[] =  [];
+      let employees: Row[] = []
 
-      await axios({
-        method: 'get',
-        url: 'http://localhost:3333/employees/read',
-        headers: {
-          authorization: `Bearer ${tokenStorage}`
-        }, 
-      }).then(res => { response = res.data; });
-
-      return response;
+      if(tokenStorage){
+        await axios({
+          method: 'GET',
+          url: 'http://localhost:3333/employees/read',
+          headers: {
+            authorization: `Bearer ${tokenStorage.replace(/"/g, '')}`
+          }
+        }).then(response => {
+          employees = response.data;
+        });
+        return employees;
+      }
+      return employees;
 
     } catch (error) {
-      alert("Could not list.\n" + error);
+      console.log("Could not list.\n" + error);
     }
   },
   
   async update(employee: Employee) {
     try {
-      
+      const tokenStorage = localStorage.getItem('token');
+      let res: Employee = {}
+
+      if(tokenStorage){
+        await axios({
+          method: 'PUT',
+          url: 'http://localhost:3333/employees/update',
+          headers: {
+            authorization: `Bearer ${tokenStorage.replace(/"/g, '')}`
+          },
+          data: employee
+        }).then(response => {
+          res = response.data;
+        });
+        return res;
+      }
+      return res;
       
     } catch (error) {
-      alert("Could not update.\n" + error);
+      console.log("Could not update.\n" + error);
     }
   },
   
   async delete(elements: Employee[]) {
     try {
-      
+      const tokenStorage = localStorage.getItem('token');
+
+      if(tokenStorage){
+        await axios({
+          method: 'DELETE',
+          url: 'http://localhost:3333/employees/delete',
+          headers: {
+            authorization: `Bearer ${tokenStorage.replace(/"/g, '')}`
+          },
+          data: elements
+        }).then(response => {
+          return true;
+        });
+      }
+      return false;
 
     } catch (error) {
       alert("don't was not possible to delete.\n" + error);
     }
   },
 
-  async show(code: string, search: string) {
+  async show(id: string) {
     try {
-      
-      return {
-        id: "teste",
-        name: "teste",
-        cpf: "teste",
-        email: "teste",
-        phone: "teste",
-        occupation: "teste",
-        sector: "teste",
-        cep: "teste",
-        city: "teste",
-        state: "teste",
-        street: "teste",
-        number: 0,
-        district: "teste",
-        complement: "teste"
+      const tokenStorage = localStorage.getItem('token');
+      let res: Employee = {}
+
+      if(tokenStorage){
+        await axios({
+          method: 'GET',
+          url: `http://localhost:3333/employees/show/${id}`,
+          headers: {
+            'Content-Type': 'application/json',
+            authorization: `Bearer ${tokenStorage.replace(/"/g, '')}`
+          },
+        }).then(response => {
+          res = response.data;
+        });
+        return res;
       }
+      return res;
 
     } catch (error) {
-      alert("Could not show.\n" + error);
+      console.log("Could not show.\n" + error);
     }
   },
 
