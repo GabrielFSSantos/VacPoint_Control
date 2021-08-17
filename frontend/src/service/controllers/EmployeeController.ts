@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { Row } from '../../hooks/useTable';
 import { Employee } from '../models/Employee';
+import { EmployeeToVaccines } from '../models/EmployeeToVaccines';
 
 const EmployeeController = {
 
@@ -126,111 +127,52 @@ const EmployeeController = {
     }
   },
 
-  async readToEmployee(id: string) {
+  async readToVaccines(id: string) {
     try {
+      const tokenStorage = localStorage.getItem('token');
+      let employeeToVaccines: EmployeeToVaccines = {};
 
-      return {
-        name: "teste",
-        vaccines: [
-          {
-            _id: "vaccine1",
-            name: "vaccine1",
-            description: "vaccine1",
-            quantDosage: 2,
-            dosages: [
-              {
-                _id: "teste",
-                dosageNumber: 1,
-                date: "12/12/12",
-                took: false,
-              },
-              {
-                _id: "teste",
-                dosageNumber: 2,
-                date: "12/12/12",
-                took: false,
-              }
-            ],
-          },
-          {
-            _id: "vaccine2",
-            name: "vaccine2",
-            description: "vaccine2",
-            quantDosage: 2,
-            dosages: [
-              {
-                _id: "teste",
-                dosageNumber: 1,
-                date: "12/12/12",
-                took: false,
-              },
-              {
-                _id: "teste",
-                dosageNumber: 2,
-                date: "12/12/12",
-                took: false,
-              }
-            ],
-          },
-        ]
+      if(tokenStorage){
+        await axios({
+          method: 'GET',
+          url: `http://localhost:3333/employees/readToVaccines/${id}`,
+          headers: {
+            authorization: `Bearer ${tokenStorage.replace(/"/g, '')}`
+          }
+        }).then(response => {
+          employeeToVaccines = response.data;
+        });
+        return employeeToVaccines;
       }
+      return employeeToVaccines;
 
     } catch (error) {
-      alert("Could not show.\n" + error);
+      console.log("Could not show.\n" + error);
     }
   },
 
-  async updateToVaccines(id: string) {
+  async updateToVaccines(employeeToVaccines: EmployeeToVaccines) {
     try {
+      const tokenStorage = localStorage.getItem('token');
+      let res: EmployeeToVaccines = {};
 
-      return {
-        name: "teste",
-        vaccines: [
-          {
-            _id: "vaccine1",
-            name: "vaccine1",
-            description: "vaccine1",
-            quantDosage: 2,
-            dosages: [
-              {
-                _id: "teste",
-                dosageNumber: 1,
-                date: "12/12/12",
-                took: false,
-              },
-              {
-                _id: "teste",
-                dosageNumber: 2,
-                date: "12/12/12",
-                took: false,
-              }
-            ],
+      if(tokenStorage){
+        await axios({
+          method: 'PUT',
+          url: `http://localhost:3333/employees/updateToVaccines`,
+          headers: {
+            authorization: `Bearer ${tokenStorage.replace(/"/g, '')}`
           },
-          {
-            _id: "vaccine2",
-            name: "vaccine2",
-            description: "vaccine2",
-            quantDosage: 2,
-            dosages: [
-              {
-                _id: "teste",
-                dosageNumber: 1,
-                date: "12/12/12",
-                took: false,
-              },
-              {
-                _id: "teste",
-                dosageNumber: 2,
-                date: "12/12/12",
-                took: false,
-              }
-            ],
-          },
-        ]
+          data: employeeToVaccines
+        }).then(response => {
+          res = response.data;
+        });
+        return res;
       }
+      return res;
 
     } catch (error) {
-      alert("Could not show.\n" + error);
+      console.log("Could not show.\n" + error);
     }
   }
 }

@@ -122,7 +122,7 @@ const EmployeeController = {
   async readToVaccines(req: Request, res: Response) {
     try {
       
-      const employee = await Employee.findById(req.body._id);
+      const employee = await Employee.findById(req.params.id);
 
       if(!employee) {
         return res.status(400).send("error Employee Exists");

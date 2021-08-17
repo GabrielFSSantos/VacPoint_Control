@@ -1,16 +1,19 @@
 import { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 
+import EmployeeController from '../../service/controllers/EmployeeController';
+import { VaccineToDosage, EmployeeToVaccines } from '../../service/models/EmployeeToVaccines';
+
+import { Employee } from '../../service/models/Employee';
+import { Vaccine } from '../../service/models/Vaccine';
+import { Dosage } from '../../service/models/Dosage';
+
 import { Header } from '../../components/Header';
 import { Button } from '../../components/Button';
 import { Card } from '../../components/Card';
 
-import { Vaccine } from '../../service/models/Vaccine';
-import VaccineController from '../../service/controllers/VaccineController';
-
 import './styles.scss';
-import EmployeeController from '../../service/controllers/EmployeeController';
-
+import { Modal } from '../../components/Modal';
 
 type EmployeeParams = {
   id: string;
@@ -20,16 +23,16 @@ export function ViewVaccineToEmployee() {
   const history = useHistory();
   const params = useParams<EmployeeParams>();
 
-  const [name, setName] = useState('');
-  const [vaccines, setVaccines] = useState<Vaccine[]>([]);
-
+  const [employee, setEmployee] = useState<Employee>({});
+  const [vaccineToDosage, setVaccineToDosage] = useState<VaccineToDosage[]>([]);
+  const [alertEdited, setAlertEdited] = useState(false);
 
   useEffect(() => {
     if(params.id){
-      EmployeeController.readToEmployee(params.id).then((dados) => {
+      EmployeeController.readToVaccines(params.id).then((dados) => {
         if (dados) {
-          setName(dados.name);
-          setVaccines(dados.vaccines);
+          setEmployee(dados.employee || {});
+          setVaccineToDosage(dados.vaccines || []);
         }
         else{
           history.push('/employees');
@@ -38,37 +41,79 @@ export function ViewVaccineToEmployee() {
     }
   },[params, history]);
   
-  function handleToDate(dosageId: string, date: Date | [Date | null, Date | null] | null) {
-    console.log(dosageId);
-    console.log(date?.toLocaleString());
+  function handleToDate(dosageId: string, date: Date) {
+    let vaccineToDosageAux = vaccineToDosage;
+    vaccineToDosageAux.forEach(element => {
+      element.dosages?.forEach(dosage => {
+        if(dosage._id === dosageId){
+          dosage.date = date.toLocaleDateString();
+          setVaccineToDosage(vaccineToDosageAux);
+          return
+        }
+      });
+    });
   }
 
-  function handleToToggle(dosageId: string, event: React.ChangeEvent<HTMLInputElement>) {
-    console.log(dosageId);
-    console.log(event.target.checked);
+  function handleToToggle(dosageId: string, took: boolean) {
+    let vaccineToDosageAux = vaccineToDosage;
+    vaccineToDosageAux.forEach(element => {
+      element.dosages?.forEach(dosage => {
+        if(dosage._id === dosageId){
+          dosage.took = took;
+          setVaccineToDosage(vaccineToDosageAux);
+          return
+        }
+      });
+    });
   }
 
   function handleToSave() {
-    
+    const request: EmployeeToVaccines = {
+      employee,
+      vaccines: vaccineToDosage
+    }
+
+    EmployeeController.updateToVaccines(request).then(() => {
+      setAlertEdited(true);
+    });
   }
 
   return(
     <div id="view-vaccine-employee">
-      <Header title={`Vacinas do funcionário ${name}`}/>
+      <Header title={`Vacinas do funcionário ${employee.name}`}/>
       
       <main>
         <div className="board">
-          {vaccines.map(vaccine => { return (
-            <div className="rowVaccine">
-              <Card vaccine title={vaccine.name}/>
-              {vaccine.dosages ? vaccine.dosages.map(dosage => { return (
-                <Card dosage dosageInfos={dosage} handleToDate={handleToDate} handleToToggle={handleToToggle}/>
+          {vaccineToDosage.map(element => { return (
+            <div key={element.vaccine?._id} className="rowVaccine">
+              <Card vaccine title={element.vaccine?.name}/>
+              {element.dosages ? element.dosages.map(dosage => { return (
+                <Card 
+                  dosage 
+                  key={dosage._id} 
+                  dosageInfos={dosage} 
+                  handleToDate={handleToDate} 
+                  handleToToggle={handleToToggle}
+                />
               )}): false}
             </div>
           )})}
         </div>
         <Button onClick={handleToSave}>Salvar Alterações</Button>
       </main>
+    
+      {alertEdited ? 
+        <Modal 
+          alert 
+          title="Vacinas editadas com sucesso!"
+          handleToCancel={() => {
+            setAlertEdited(false);
+            history.push('/employees');
+          }}
+        >
+          {`Vacinas do funcionário ${employee.name} editadas com sucesso!!!`}
+        </Modal> 
+      : false}
     </div>
   );
 }
