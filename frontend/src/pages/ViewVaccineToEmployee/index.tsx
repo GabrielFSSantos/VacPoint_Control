@@ -5,8 +5,6 @@ import EmployeeController from '../../service/controllers/EmployeeController';
 import { VaccineToDosage, EmployeeToVaccines } from '../../service/models/EmployeeToVaccines';
 
 import { Employee } from '../../service/models/Employee';
-import { Vaccine } from '../../service/models/Vaccine';
-import { Dosage } from '../../service/models/Dosage';
 
 import { Header } from '../../components/Header';
 import { Button } from '../../components/Button';

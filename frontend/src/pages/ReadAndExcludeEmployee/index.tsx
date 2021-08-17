@@ -17,7 +17,6 @@ export function ReadAndExcludeEmployee() {
   const [selectMoreEmployee, setSelectMoreEmployee] = useState(false);
   const [confirmExcludedEmployee, setConfirmExcludedEmployee] = useState(false);
   const [excludedEmployee, setExcludedEmployee] = useState(false);
-  const [vaccinesEmployee, setVaccinesEmployee] = useState(false);
 
   async function handleToNewEmployee() {
     history.push('/new/employee');

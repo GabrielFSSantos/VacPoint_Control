@@ -125,7 +125,7 @@ export function RegisterAndEditPost() {
 
                 <div className="imageContent">
                   <span>Visualização:</span>
-                  {image ? (<img src={image} alt="image"/>) : (<img src={cam} alt="image"/>)}
+                  {image ? (<img src={image} alt="HandleImage"/>) : (<img src={cam} alt="Cam"/>)}
                 </div>
               </div>
             </div>

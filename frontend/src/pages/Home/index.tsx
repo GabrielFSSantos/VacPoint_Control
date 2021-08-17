@@ -1,4 +1,3 @@
-import washingMachine from '../../assets/logo.png';
 import './styles.scss' 
 
 export function Home() {
