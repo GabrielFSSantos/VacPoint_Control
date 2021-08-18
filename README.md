@@ -1,7 +1,5 @@
 # VacPoint_Control
-![Developer](https://img.shields.io/badge/GabrielFSSantos-VacPoint__Control-blue)
-
-[![GitHub](https://img.shields.io/github/license/GabrielFSSantos/VacPoint_Control)](https://github.com/GabrielFSSantos/VacPoint_Control/blob/main/LICENSE)
+![Developer](https://img.shields.io/badge/GabrielFSSantos-VacPoint__Control-blue) [![GitHub](https://img.shields.io/github/license/GabrielFSSantos/VacPoint_Control)](https://github.com/GabrielFSSantos/VacPoint_Control/blob/main/LICENSE)
 
 <h1  align="center">
 	<img  alt="VacPoint_Control"  src="apresentacao.svg"/>
