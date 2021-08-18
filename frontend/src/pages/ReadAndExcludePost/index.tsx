@@ -42,6 +42,10 @@ export function ReadAndExcludePost() {
     setConfirmExcludedPost(true);
   }
 
+  async function handleNewsFeed() {
+    history.push('/NewsFeed');
+  }
+
   return(
     <div>
       <Header title="Postagens"/>
@@ -51,6 +55,7 @@ export function ReadAndExcludePost() {
         handleToNew={handleToNewPost}
         handleToEdit={handleToEditPost}
         handleToRemove={handleToRemovePost}
+        handleNewsFeed={handleNewsFeed}
         setRowsSelected={setRowsSelected}
       />
 

@@ -31,18 +31,14 @@ const PostController = {
 
   async read() {
     try {
-      const tokenStorage = localStorage.getItem('token');
       let posts: Row[] = []
 
-      if(tokenStorage){
-        await axios({
-          method: 'GET',
-          url: 'http://localhost:3333/posts/read',
-        }).then(response => {
-          posts = response.data;
-        });
-        return posts;
-      }
+      await axios({
+        method: 'GET',
+        url: 'http://localhost:3333/posts/read',
+      }).then(response => {
+        posts = response.data;
+      });
       return posts;
 
     } catch (error) {

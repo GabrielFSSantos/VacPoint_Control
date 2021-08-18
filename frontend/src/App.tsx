@@ -10,11 +10,13 @@ import { ReadAndExcludeVaccine } from './pages/ReadAndExcludeVaccine';
 import { RegisterAndEditVaccine } from './pages/RegisterAndEditVaccine';
 import { ReadAndExcludePost } from './pages/ReadAndExcludePost';
 import { RegisterAndEditPost } from './pages/RegisterAndEditPost';
+import { NewsFeed } from './pages/NewsFeed';
 
 function App() {
   return (
     <BrowserRouter>
       <Switch>
+        <Route path="/NewsFeed" exact component={NewsFeed}/>
         {localStorage.getItem('token') ? (
             <Sidebar>
               <Route path="/home" component={Home}/>
