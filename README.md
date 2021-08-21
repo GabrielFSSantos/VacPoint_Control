@@ -39,14 +39,14 @@ yarn install	   ou		npm install
 cd ./backend
 ```
 ```sh
-yarn dev:server	   ou		npm dev:server
+yarn dev:server	   ou		npm run-script dev:server
 ```
 >E logo após voltar a pasta raiz do projeto e executar:
 ```sh
 cd ./frontend
 ```
 ```sh
-yarn start	   ou		npm start
+yarn start	   ou		npm run-script start
 ```
 
 ## Contributing
