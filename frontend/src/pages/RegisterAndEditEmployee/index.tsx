@@ -23,8 +23,8 @@ export function RegisterAndEditEmployee() {
   const [cpf, setCpf] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
-  const [sector, setSector] = useState('administration');
-  const [occupation, setOccupation] = useState('doorman');
+  const [sector, setSector] = useState('');
+  const [occupation, setOccupation] = useState('');
   const [cep, setCep] = useState('');
   const [city, setCity] = useState('');
   const [state, setState] = useState('');
@@ -152,11 +152,9 @@ export function RegisterAndEditEmployee() {
                 <LabelAndChange
                   select
                   name="Setor"
-                  placeholder="Selecione o setor do funcionário..."
                   onChange={event => setSector(event.target.value)}
-                  value={sector || "administration"}
-                  disabled={params.id !== undefined ? true : false}
                 >
+                  <option value="" disabled hidden selected>Selecione o setor do funcionário...</option>
                   <option value="administration">Administração</option>
                   <option value="kitchen">Cozinha</option>
                   <option value="nursing">Enfermagem</option>
@@ -170,12 +168,11 @@ export function RegisterAndEditEmployee() {
                 <LabelAndChange
                   select
                   name="Função"
-                  placeholder="Selecione a função do funcionário..."
                   onChange={event => setOccupation(event.target.value)}
-                  value={occupation || "doorman"}
-                  disabled={params.id !== undefined ? true : false}
                 >
+                  <option value="" disabled selected hidden>Selecione a função do funcionário...</option>
                   { sector === 'administration' ? (<>
+                    <option value="" disabled selected hidden>Selecione a função do funcionário...</option>
                     <option value="doorman">Porteiro(a)</option>
                     <option value="hospitalReceptionist">Rec. de Hospital</option>
                     <option value="biller">Faturista</option>
@@ -189,38 +186,45 @@ export function RegisterAndEditEmployee() {
                   </>) : false }
 
                   { sector === 'kitchen' ? (<>
+                    <option value="" disabled selected hidden>Selecione a função do funcionário...</option>
                     <option value="nutritionist">Nutricionista</option>
                     <option value="butler">Copeiro(a)</option>
                     <option value="kitchenAssistant">Aux. de Cozinha</option>
                   </>) : false }
 
                   { sector === 'nursing' ? (<>
+                    <option value="" disabled selected hidden>Selecione a função do funcionário...</option>
                     <option value="nursingSupervisor">Sup. de Enfermagem</option>
                     <option value="nurse">Enfermeiro(a)</option>
                     <option value="nursingTechnician">Tec. em Enfermagem</option>
                   </>) : false }
 
                   { sector === 'drugstore' ? (<>
+                    <option value="" disabled selected hidden>Selecione a função do funcionário...</option>
                     <option value="pharmaceutical">Farmacêutico</option>
                     <option value="pharmacyAttendant">Aten. de Farmácia</option>
                   </>) : false }
 
                   { sector === 'laboratory' ? (<>
+                    <option value="" disabled selected hidden>Selecione a função do funcionário...</option>
                     <option value="Biomedical">Biomédico(a)</option>
                     <option value="pathologyTechnician">Aux. de Laboratório</option>
                     <option value="laboratoryAssistant">Tec. em Patologia</option>
                   </>) : false }
 
                   { sector === 'cleaning' ? (<>
+                    <option value="" disabled selected hidden>Selecione a função do funcionário...</option>
                     <option value="cleaner">Faxineiro(a)</option>
                   </>) : false }
 
                   { sector === 'clothingProcessing' ? (<>
+                    <option value="" disabled selected hidden>Selecione a função do funcionário...</option>
                     <option value="dressmaker">Costureiro(a)</option>
                     <option value="washer">Lavador(a)</option>
                   </>) : false }
 
                   { sector === 'radiology' ? (<>
+                    <option value="" disabled selected hidden>Selecione a função do funcionário...</option>
                     <option value="radiologist">Radiologista</option>
                     <option value="radiologyTechnician">Tec. em Radiologia</option>
                     <option value="radiologyAttendant">Aten. de Radiologia</option>
