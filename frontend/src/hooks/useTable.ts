@@ -45,7 +45,8 @@ export function useTable({type, search}: TableProps) {
         else {
           setRows(employees.filter((employee) => {
             if(employee.name){
-              return employee.name.includes(search);
+              return employee.name.toLowerCase().includes(search.toLowerCase());
+              //return employee.name.includes(search);
             }
             else return false;
           }));
@@ -66,7 +67,7 @@ export function useTable({type, search}: TableProps) {
         else {
           setRows(vaccines.filter((vaccine) => {
             if(vaccine.name){
-              return vaccine.name.includes(search);
+              return vaccine.name.toLowerCase().includes(search.toLowerCase());
             }
             else return false;
           }));
@@ -88,7 +89,7 @@ export function useTable({type, search}: TableProps) {
         else {
           setRows(posts.filter((post) => {
             if(post.title){
-              return post.title.includes(search);
+              return post.title.toLowerCase().includes(search.toLowerCase());
             }
             else return false;
           }));

@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import Vaccine from "./Vaccine";
 
 const Employee = new mongoose.Schema({
   name: String,
